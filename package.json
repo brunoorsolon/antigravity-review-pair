@@ -1,0 +1,38 @@
+{
+  "name": "antigravity-broker-connector",
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "find src bin test vendor scripts -name \"*.mjs\" -print0 | xargs -0 -r -n1 node --check",
+    "test:pack": "node scripts/pack-smoke.mjs"
+  },
+  "license": "MIT",
+  "description": "Cooperative stdio MCP connector between Antigravity and the Psst agent message broker.",
+  "bin": {
+    "psst-antigravity": "bin/psst-antigravity.mjs"
+  },
+  "files": [
+    "bin/psst-antigravity.mjs",
+    "src/**/*.mjs",
+    "vendor/psst/**",
+    "docs/installation.md",
+    "docs/release.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoorsolon/antigravity-broker-connector.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "antigravity",
+    "mcp",
+    "psst",
+    "agent-messaging"
+  ]
+}

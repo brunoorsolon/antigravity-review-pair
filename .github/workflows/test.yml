@@ -1,0 +1,27 @@
+name: adapter-fixtures
+on:
+  push:
+    branches: ['main', 'feat/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  fixture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: antigravity-review-pair
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: matuto-ai/psst
+          ref: ba2219cd87a1feac23e01b23d2c2b3d3bdd65359
+          path: ai-agent-msg-broker
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24.19.0'
+      - run: npm run check && npm test && npm run test:pack
+        working-directory: antigravity-review-pair
